@@ -1,16 +1,16 @@
-package com.codecool.model;
+package com.codecool.model.parkingspot;
 
 import java.util.Objects;
 
 public class Spot {
-    private int idCounter = 0;
+    private static int idCounter = 0;
     private int id;
-    private SpotType spotType;
+    private final SpotType spotType;
+
     private boolean isFree;
 
     public Spot(SpotType spotType) {
-        idCounter++;
-        this.id = idCounter;
+        this.id = idCounter++;
         this.spotType = spotType;
         this.isFree = true;
     }
@@ -35,8 +35,8 @@ public class Spot {
         return isFree;
     }
 
-    public boolean isBig() {
-        return spotType == SpotType.BIG;
+    public SpotType getSpotType() {
+        return spotType;
     }
 
     @Override

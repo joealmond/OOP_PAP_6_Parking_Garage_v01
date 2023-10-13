@@ -1,7 +1,8 @@
-package com.codecool.model;
+package com.codecool.model.parkingspot;
 
 public enum SpotType {
     SMALL(9.99),
+    MEDIUM(14.99),
     BIG(19.99);
 
     private final double price;
