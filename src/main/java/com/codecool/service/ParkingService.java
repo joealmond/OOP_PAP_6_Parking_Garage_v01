@@ -37,6 +37,7 @@ public class ParkingService {
                     .filter(spot -> spot.isFree())
                     .filter(spot -> spot.isBig())
                     .collect(Collectors.toSet());
+            // find first a collect helyett
         } else {
             freeSpots = spots.stream()
                     .filter(spot -> spot.isFree())
@@ -45,7 +46,7 @@ public class ParkingService {
 
         if (freeSpots.isEmpty()) {
             System.out.println("Sorry, no places avaible...");
-            // TODO: is ok to return this?
+            // TODO: is ok to return this? - No. return null!
             return new Ticket(LocalDateTime.now(),0,0,0);
         }
 
