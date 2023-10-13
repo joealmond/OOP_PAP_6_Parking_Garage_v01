@@ -20,6 +20,23 @@ public class ParkingService {
         this.tickets = new HashSet<>();
     }
 
+    public Ticket reserve(Vehicle vehicle) {
+        if (hasNoFreeSpot()) return null;
+
+        Optional<Spot> optionalFoundSpot = getAvailibleSpot(vehicle);
+
+        if (optionalFoundSpot.isEmpty()) {
+            System.out.println("Sorry, no more parkingspot for your car size...");
+            return null;
+        }
+
+        Spot spot = occupySpot(optionalFoundSpot);
+
+        Ticket ticket = getTicket(vehicle, spot);
+
+        return ticket;
+    }
+
     private static Ticket getTicket(Vehicle vehicle, Spot spot) {
         Ticket ticket = new Ticket(LocalDateTime.now(), spot.getId(), spot.getPrice(), vehicle.getId());
 
@@ -41,23 +58,6 @@ public class ParkingService {
     public void addSpots(Set<Spot> spots) {
         this.spots.addAll(spots);
         System.out.println("Spots added..");
-    }
-
-    public Ticket reserve(Vehicle vehicle) {
-        if (hasNoFreeSpot()) return null;
-
-        Optional<Spot> optionalFoundSpot = getAvailibleSpot(vehicle);
-
-        if (optionalFoundSpot.isEmpty()) {
-            System.out.println("Sorry, no more parkingspot for your car size...");
-            return null;
-        }
-
-        Spot spot = occupySpot(optionalFoundSpot);
-
-        Ticket ticket = getTicket(vehicle, spot);
-
-        return ticket;
     }
 
     private Optional<Spot> getAvailibleSpot(Vehicle vehicle) {

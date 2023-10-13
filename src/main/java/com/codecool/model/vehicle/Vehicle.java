@@ -2,6 +2,7 @@ package com.codecool.model.vehicle;
 
 import com.codecool.model.parkingspot.SpotType;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,7 +21,7 @@ public class Vehicle {
     }
 
     public List<SpotType> getSpotTypes() {
-        return spotTypes;
+        return new ArrayList<>(spotTypes);
     }
 
     @Override
